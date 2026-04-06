@@ -37,5 +37,5 @@ USER node
 
 EXPOSE 3000
 
-# Start the app - searching for the main entry point in dist/ or dist/src/
-CMD ["sh", "-c", "node dist/main.js || node dist/src/main.js"]
+# Start the app - Standard CommonJS start
+CMD ["node", "dist/main"]
