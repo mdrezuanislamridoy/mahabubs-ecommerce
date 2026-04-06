@@ -13,8 +13,8 @@ COPY . .
 # Generate Prisma Client
 RUN DATABASE_URL="postgresql://user:password@localhost:5432/nestdb" npx prisma generate
 
-# Build the NestJS app
-RUN npm run build
+# Build the NestJS app and list files for debugging
+RUN npm run build && ls -R dist
 
 # Prune dev dependencies
 RUN npm prune --omit=dev
@@ -37,5 +37,5 @@ USER node
 
 EXPOSE 3000
 
-# Start the app
-CMD ["node", "dist/main.js"]
+# Start the app - searching for the main entry point in dist/ or dist/src/
+CMD ["sh", "-c", "node dist/main.js || node dist/src/main.js"]
