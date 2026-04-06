@@ -37,4 +37,4 @@ USER node
 
 EXPOSE 3000
 
-CMD ["sh", "-c", "npx prisma migrate deploy --url \"$DATABASE_URL\" && node dist/main"]
+CMD ["sh", "-c", "npx prisma migrate deploy && node dist/main"]
