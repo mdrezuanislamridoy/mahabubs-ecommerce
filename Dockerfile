@@ -37,5 +37,4 @@ USER node
 
 EXPOSE 3000
 
-# Start the app - Self-migrating command and CommonJS entry point
-CMD ["sh", "-c", "npx prisma migrate deploy && node dist/main"]
+CMD ["sh", "-c", "npx prisma migrate deploy --url \"$DATABASE_URL\" && node dist/main"]

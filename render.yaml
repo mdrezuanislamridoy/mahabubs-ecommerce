@@ -20,4 +20,4 @@ services:
       - key: JWT_EXPIRES_IN
         value: 1d
     # Note: For Docker services on Render, migrations are best handled within the container's CMD or via preDeployCommand
-    preDeployCommand: npx prisma generate && npx prisma migrate deploy
+    preDeployCommand: npx prisma generate && npx prisma migrate deploy --url "$DATABASE_URL"
