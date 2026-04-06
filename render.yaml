@@ -1,0 +1,23 @@
+databases:
+  - name: nest-ecommerce-db
+    plan: free
+    databaseName: nest_ecommerce
+    user: dbuser
+
+services:
+  - type: web
+    name: nest-ecommerce-api
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/products
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: nest-ecommerce-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 1d
+    # Note: For Docker services on Render, migrations are best handled within the container's CMD or via preDeployCommand
+    preDeployCommand: npx prisma migrate deploy

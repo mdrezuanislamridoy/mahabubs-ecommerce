@@ -37,5 +37,5 @@ USER node
 
 EXPOSE 3000
 
-# Start the app - Standard CommonJS start
-CMD ["node", "dist/main"]
+# Start the app - Self-migrating command and CommonJS entry point
+CMD ["sh", "-c", "npx prisma migrate deploy && node dist/main"]
